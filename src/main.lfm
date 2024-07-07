@@ -1,0 +1,163 @@
+object Form1: TForm1
+  Left = 368
+  Height = 621
+  Top = 250
+  Width = 849
+  Caption = 'Form1'
+  ClientHeight = 621
+  ClientWidth = 849
+  object Panel1: TPanel
+    Left = 0
+    Height = 56
+    Top = 0
+    Width = 849
+    Align = alTop
+    ClientHeight = 56
+    ClientWidth = 849
+    TabOrder = 0
+    object bbAbrirPasta: TBitBtn
+      Left = 16
+      Height = 41
+      Top = 6
+      Width = 168
+      Caption = '&Abrir Pasta'
+      OnClick = bbAbrirPastaClick
+      TabOrder = 0
+    end
+    object pnItens: TPanel
+      Left = 392
+      Height = 35
+      Top = 9
+      Width = 190
+      Align = alRight
+      BorderSpacing.Bottom = 3
+      BorderSpacing.Around = 8
+      BevelInner = bvLowered
+      Caption = 'Itens:    0'
+      Font.Height = -24
+      Font.Name = 'Courier New'
+      ParentFont = False
+      TabOrder = 1
+      VerticalAlignment = taAlignBottom
+    end
+    object pnTotal: TPanel
+      Left = 590
+      Height = 35
+      Top = 9
+      Width = 250
+      Align = alRight
+      BorderSpacing.Bottom = 3
+      BorderSpacing.Around = 8
+      BevelInner = bvLowered
+      Font.Color = clBlue
+      Font.Height = -24
+      Font.Name = 'Courier New'
+      ParentFont = False
+      TabOrder = 2
+      VerticalAlignment = taAlignBottom
+    end
+  end
+  object pcCatalogo: TPageControl
+    Left = 0
+    Height = 565
+    Top = 56
+    Width = 849
+    ActivePage = tsCatalog
+    Align = alClient
+    TabIndex = 0
+    TabOrder = 1
+    object tsCatalog: TTabSheet
+      Caption = '&Catalogo'
+      ClientHeight = 535
+      ClientWidth = 839
+      object Image: TImage
+        Left = 0
+        Height = 535
+        Top = 0
+        Width = 643
+        Align = alClient
+        Center = True
+        Proportional = True
+        Stretch = True
+      end
+      object Panel2: TPanel
+        Left = 643
+        Height = 535
+        Top = 0
+        Width = 196
+        Align = alRight
+        ClientHeight = 535
+        ClientWidth = 196
+        TabOrder = 0
+        object edQtd: TLabeledEdit
+          Left = 28
+          Height = 31
+          Top = 83
+          Width = 136
+          Alignment = taRightJustify
+          EditLabel.Height = 16
+          EditLabel.Width = 136
+          EditLabel.Caption = 'Quantidade'
+          Font.Height = -16
+          ParentFont = False
+          TabOrder = 0
+          Text = '1'
+          OnKeyDown = edQtdKeyDown
+          OnKeyPress = edQtdKeyPress
+        end
+        object edValor: TLabeledEdit
+          Left = 28
+          Height = 31
+          Top = 151
+          Width = 136
+          Alignment = taRightJustify
+          EditLabel.Height = 16
+          EditLabel.Width = 136
+          EditLabel.Caption = 'Valor'
+          Font.Height = -16
+          ParentFont = False
+          TabOrder = 1
+          OnKeyDown = edValorKeyDown
+          OnKeyPress = edValorKeyPress
+        end
+        object bbProximo: TBitBtn
+          Left = 28
+          Height = 30
+          Top = 224
+          Width = 136
+          Caption = 'Próximo'
+          OnClick = bbProximoClick
+          TabOrder = 2
+        end
+        object lbId: TLabel
+          Left = 28
+          Height = 20
+          Top = 16
+          Width = 136
+          AutoSize = False
+          Caption = 'lbId'
+          Font.Height = -16
+          ParentFont = False
+        end
+        object bbVoltar: TBitBtn
+          Left = 28
+          Height = 30
+          Top = 272
+          Width = 136
+          Caption = 'Voltar'
+          OnClick = bbVoltarClick
+          TabOrder = 3
+        end
+      end
+    end
+    object tsPedido: TTabSheet
+      Caption = '&Pedido'
+      OnShow = tsPedidoShow
+      TabVisible = False
+    end
+  end
+  object sdDialog: TSelectDirectoryDialog
+    Left = 227
+    Top = 229
+  end
+end
