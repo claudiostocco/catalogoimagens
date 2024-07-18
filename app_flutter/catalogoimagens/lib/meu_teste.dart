@@ -1,5 +1,6 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MeuTeste extends StatefulWidget {
   const MeuTeste({super.key});
@@ -23,7 +24,15 @@ class _MeuTesteState extends State<MeuTeste> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('Meu Teste'),
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.pushNamed(context, '/teste_exemplo'),
+            icon: const Icon(Icons.ac_unit_sharp),
+          )
+        ],
+      ),
       body: Center(
         child: Column(
           children: [
@@ -33,7 +42,10 @@ class _MeuTesteState extends State<MeuTeste> {
                 children: [
                   TextFormField(
                     controller: edCpf,
-                    inputFormatters: [CpfInputFormatter()],
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      CpfInputFormatter()
+                    ],
                     decoration: const InputDecoration(label: Text('Cpf')),
                   ),
                   TextFormField(
@@ -45,6 +57,18 @@ class _MeuTesteState extends State<MeuTeste> {
                     controller: edCpfCnpj,
                     inputFormatters: [CpfOuCnpjFormatter()],
                     decoration: const InputDecoration(label: Text('Cpf/Cnpj')),
+                  ),
+                  RowFormattersWithForm(
+                    label: 'CPF',
+                    formatter: CpfInputFormatter(),
+                  ),
+                  RowFormattersWithForm(
+                    label: 'CNPJ',
+                    formatter: CnpjInputFormatter(),
+                  ),
+                  RowFormattersWithForm(
+                    label: 'CPF/CNPJ',
+                    formatter: CpfOuCnpjFormatter(),
                   ),
                 ],
               ),
@@ -61,6 +85,24 @@ class _MeuTesteState extends State<MeuTeste> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class RowFormattersWithForm extends StatelessWidget {
+  final String label;
+  final TextInputFormatter formatter;
+
+  const RowFormattersWithForm({super.key, required this.label, required this.formatter});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      decoration: InputDecoration(label: Text(label)),
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+        formatter,
+      ],
     );
   }
 }

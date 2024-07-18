@@ -7,96 +7,188 @@ class TesteExemplo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Brasil Fields',
-      theme: ThemeData(primarySwatch: Colors.green),
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            bottom: const TabBar(
-              tabs: [
-                Tab(
-                  icon: Icon(Icons.keyboard),
-                  child: Text('Formatters'),
-                ),
-                Tab(
-                  icon: Icon(Icons.calendar_today),
-                  child: Text('Datas'),
-                ),
-                Tab(
-                  icon: Icon(Icons.smart_display),
-                  child: Text('Padrões'),
-                ),
-              ],
-            ),
-            title: const Text('Brasil Fields'),
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: const TabBar(
+            tabs: [
+              Tab(
+                icon: Icon(Icons.keyboard),
+                child: Text('Formatters'),
+              ),
+              Tab(
+                icon: Icon(Icons.keyboard),
+                child: Text('Formatters With Form'),
+              ),
+              Tab(
+                icon: Icon(Icons.calendar_today),
+                child: Text('Datas'),
+              ),
+              Tab(
+                icon: Icon(Icons.smart_display),
+                child: Text('Padrões'),
+              ),
+            ],
           ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: TabBarView(
-              children: [
-                ListView(
+          title: const Text('Brasil Fields'),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: TabBarView(
+            children: [
+              ListView(
+                children: [
+                  RowFormatters(
+                    label: 'CEP',
+                    formatter: CepInputFormatter(),
+                  ),
+                  RowFormatters(
+                    label: 'CPF',
+                    formatter: CpfInputFormatter(),
+                  ),
+                  RowFormatters(
+                    label: 'CNPJ',
+                    formatter: CnpjInputFormatter(),
+                  ),
+                  RowFormatters(
+                    label: 'CPF/CNPJ',
+                    formatter: CpfOuCnpjFormatter(),
+                  ),
+                  RowFormatters(
+                    label: 'Telefone',
+                    formatter: TelefoneInputFormatter(),
+                  ),
+                  RowFormatters(
+                    label: 'Data',
+                    formatter: DataInputFormatter(),
+                  ),
+                  RowFormatters(
+                    label: 'Hora',
+                    formatter: HoraInputFormatter(),
+                  ),
+                  RowFormatters(
+                    label: 'KM',
+                    formatter: KmInputFormatter(),
+                  ),
+                  RowFormatters(label: 'Centavos', formatter: CentavosInputFormatter()),
+                  RowFormatters(
+                      label: 'Centavos + moeda',
+                      formatter: CentavosInputFormatter(moeda: true)),
+                  RowFormatters(
+                      label: 'Centavos + 3 decimais',
+                      formatter: CentavosInputFormatter(casasDecimais: 3)),
+                  RowFormatters(
+                      label: 'Centavos + 3 decimais + moeda',
+                      formatter: CentavosInputFormatter(casasDecimais: 3, moeda: true)),
+                  RowFormatters(label: 'Real', formatter: RealInputFormatter()),
+                  RowFormatters(
+                      label: 'Real + moeda', formatter: RealInputFormatter(moeda: true)),
+                  RowFormatters(
+                    label: 'Peso',
+                    formatter: PesoInputFormatter(),
+                  ),
+                  RowFormatters(
+                    label: 'Altura',
+                    formatter: AlturaInputFormatter(),
+                  ),
+                  RowFormatters(
+                    label: 'Cartão Bancário',
+                    formatter: CartaoBancarioInputFormatter(),
+                  ),
+                  RowFormatters(
+                    label: 'Validade Cartão Bancário',
+                    formatter: ValidadeCartaoInputFormatter(),
+                  ),
+                  TextField(
+                    decoration: const InputDecoration(label: Text('Placa Veículo')),
+                    inputFormatters: [PlacaVeiculoInputFormatter()],
+                  ),
+                  RowFormatters(
+                    label: 'Temperatura',
+                    formatter: TemperaturaInputFormatter(),
+                  ),
+                  RowFormatters(
+                    label: 'IOF',
+                    formatter: IOFInputFormatter(),
+                  ),
+                  RowFormatters(
+                    label: 'NCM',
+                    formatter: NCMInputFormatter(),
+                  ),
+                  RowFormatters(
+                    label: 'CEST',
+                    formatter: CESTInputFormatter(),
+                  ),
+                  RowFormatters(
+                    label: 'CNS',
+                    formatter: CNSInputFormatter(),
+                  ),
+                ],
+              ),
+              Form(
+                child: ListView(
                   children: [
-                    RowFormatters(
+                    RowFormattersWithForm(
                       label: 'CEP',
                       formatter: CepInputFormatter(),
                     ),
-                    RowFormatters(
+                    RowFormattersWithForm(
                       label: 'CPF',
                       formatter: CpfInputFormatter(),
                     ),
-                    RowFormatters(
+                    RowFormattersWithForm(
                       label: 'CNPJ',
                       formatter: CnpjInputFormatter(),
                     ),
-                    RowFormatters(
+                    RowFormattersWithForm(
                       label: 'CPF/CNPJ',
                       formatter: CpfOuCnpjFormatter(),
                     ),
-                    RowFormatters(
+                    RowFormattersWithForm(
                       label: 'Telefone',
                       formatter: TelefoneInputFormatter(),
                     ),
-                    RowFormatters(
+                    RowFormattersWithForm(
                       label: 'Data',
                       formatter: DataInputFormatter(),
                     ),
-                    RowFormatters(
+                    RowFormattersWithForm(
                       label: 'Hora',
                       formatter: HoraInputFormatter(),
                     ),
-                    RowFormatters(
+                    RowFormattersWithForm(
                       label: 'KM',
                       formatter: KmInputFormatter(),
                     ),
-                    RowFormatters(label: 'Centavos', formatter: CentavosInputFormatter()),
-                    RowFormatters(
+                    RowFormattersWithForm(
+                        label: 'Centavos', formatter: CentavosInputFormatter()),
+                    RowFormattersWithForm(
                         label: 'Centavos + moeda',
                         formatter: CentavosInputFormatter(moeda: true)),
-                    RowFormatters(
+                    RowFormattersWithForm(
                         label: 'Centavos + 3 decimais',
                         formatter: CentavosInputFormatter(casasDecimais: 3)),
-                    RowFormatters(
+                    RowFormattersWithForm(
                         label: 'Centavos + 3 decimais + moeda',
                         formatter: CentavosInputFormatter(casasDecimais: 3, moeda: true)),
-                    RowFormatters(label: 'Real', formatter: RealInputFormatter()),
-                    RowFormatters(
+                    RowFormattersWithForm(label: 'Real', formatter: RealInputFormatter()),
+                    RowFormattersWithForm(
                         label: 'Real + moeda',
                         formatter: RealInputFormatter(moeda: true)),
-                    RowFormatters(
+                    RowFormattersWithForm(
                       label: 'Peso',
                       formatter: PesoInputFormatter(),
                     ),
-                    RowFormatters(
+                    RowFormattersWithForm(
                       label: 'Altura',
                       formatter: AlturaInputFormatter(),
                     ),
-                    RowFormatters(
+                    RowFormattersWithForm(
                       label: 'Cartão Bancário',
                       formatter: CartaoBancarioInputFormatter(),
                     ),
-                    RowFormatters(
+                    RowFormattersWithForm(
                       label: 'Validade Cartão Bancário',
                       formatter: ValidadeCartaoInputFormatter(),
                     ),
@@ -104,32 +196,32 @@ class TesteExemplo extends StatelessWidget {
                       decoration: const InputDecoration(label: Text('Placa Veículo')),
                       inputFormatters: [PlacaVeiculoInputFormatter()],
                     ),
-                    RowFormatters(
+                    RowFormattersWithForm(
                       label: 'Temperatura',
                       formatter: TemperaturaInputFormatter(),
                     ),
-                    RowFormatters(
+                    RowFormattersWithForm(
                       label: 'IOF',
                       formatter: IOFInputFormatter(),
                     ),
-                    RowFormatters(
+                    RowFormattersWithForm(
                       label: 'NCM',
                       formatter: NCMInputFormatter(),
                     ),
-                    RowFormatters(
+                    RowFormattersWithForm(
                       label: 'CEST',
                       formatter: CESTInputFormatter(),
                     ),
-                    RowFormatters(
+                    RowFormattersWithForm(
                       label: 'CNS',
                       formatter: CNSInputFormatter(),
                     ),
                   ],
                 ),
-                const Text('Em breve'),
-                const Text('Em breve'),
-              ],
-            ),
+              ),
+              const Text('Em breve'),
+              const Text('Em breve'),
+            ],
           ),
         ),
       ),
@@ -146,6 +238,24 @@ class RowFormatters extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      decoration: InputDecoration(label: Text(label)),
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+        formatter,
+      ],
+    );
+  }
+}
+
+class RowFormattersWithForm extends StatelessWidget {
+  final String label;
+  final TextInputFormatter formatter;
+
+  const RowFormattersWithForm({super.key, required this.label, required this.formatter});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
       decoration: InputDecoration(label: Text(label)),
       inputFormatters: [
         FilteringTextInputFormatter.digitsOnly,
