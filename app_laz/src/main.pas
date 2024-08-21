@@ -154,10 +154,10 @@ begin
   for i := 0 to Itens.Count - 1 do
   begin
     item := Itens.Items[i];
-      Result := Result + item.qtd * item.preco;
+    //Result := Result + item.qtd * item.preco;
   end;
 
-  sdDialog.FileName
+  //sdDialog.FileName
 end;
 
 procedure TForm1.edQtdKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
