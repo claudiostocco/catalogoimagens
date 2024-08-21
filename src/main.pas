@@ -26,6 +26,8 @@ type
     bbAbrirPasta: TBitBtn;
     bbProximo: TBitBtn;
     bbVoltar: TBitBtn;
+    bSalvarPedido: TButton;
+    bAbrirPedido: TButton;
     edValor: TLabeledEdit;
     Image: TImage;
     edQtd: TLabeledEdit;
@@ -41,6 +43,7 @@ type
     procedure bbAbrirPastaClick(Sender: TObject);
     procedure bbProximoClick(Sender: TObject);
     procedure bbVoltarClick(Sender: TObject);
+    procedure bSalvarPedidoClick(Sender: TObject);
     procedure edQtdKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure edQtdKeyPress(Sender: TObject; var Key: char);
     procedure edValorKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -106,7 +109,7 @@ begin
     i := -1;
     repeat
       Inc(i);
-      Itens.Add(TPedidoItem.Create(i,sdDialog.FileName+'/'+arq.Name,0,0));
+      Itens.Add(TPedidoItem.Create(i,sdDialog.FileName+'/'+arq.Name,1,0));
       result := FindNext(arq);
     until (arq.Name = '') or (result < 0);
 
@@ -131,13 +134,30 @@ begin
     pnTotal.Caption := Format('Total: %8.2f',[TotalPedido]);
   end;
   (* Seleciona próximo item *)
-  setItemPedido(itemAtual + 1);
+  TemProximo(itemAtual + 1);
+  if bbProximo.Enabled then
+     setItemPedido(itemAtual + 1);
 end;
 
 procedure TForm1.bbVoltarClick(Sender: TObject);
 begin
   (* Seleciona próximo item *)
   setItemPedido(itemAtual - 1);
+end;
+
+procedure TForm1.bSalvarPedidoClick(Sender: TObject);
+var sl: TStringList;
+    i: Integer;
+    item: TPedidoItem;
+begin
+  sl := TStringList.Create;
+  for i := 0 to Itens.Count - 1 do
+  begin
+    item := Itens.Items[i];
+      Result := Result + item.qtd * item.preco;
+  end;
+
+  sdDialog.FileName
 end;
 
 procedure TForm1.edQtdKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -159,7 +179,6 @@ begin
   for i := 0 to Itens.Count - 1 do
   begin
     item := Itens.Items[i];
-     //item.qtd * item.preco;
   end;
 end;
 
@@ -171,9 +190,9 @@ begin
   edQtd.Text := item.qtd.ToString;
   edValor.Text := Format('%1.2f',[item.preco]);
   lbId.Caption := Format('ID: %.3d',[item.id+1]);
-  TemProximo(id);
   itemAtual := id;
-  edQtd.SetFocus;
+  edValor.SetFocus;
+  //edQtd.SetFocus;
 end;
 
 procedure TForm1.setValorItemPedido(id: Integer; qtd: Double; preco: Currency);
@@ -191,7 +210,7 @@ end;
 
 procedure TForm1.TemProximo(i: Integer);
 begin
-  bbProximo.Enabled := Itens.Count > i+1;
+  bbProximo.Enabled := Itens.Count > i;
 end;
 
 function TForm1.TotalPedido: Currency;

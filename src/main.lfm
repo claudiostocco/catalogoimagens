@@ -56,6 +56,15 @@ object Form1: TForm1
       TabOrder = 2
       VerticalAlignment = taAlignBottom
     end
+    object bSalvarPedido: TButton
+      Left = 216
+      Height = 25
+      Top = 16
+      Width = 75
+      Caption = 'Salvar'
+      TabOrder = 3
+      OnClick = bSalvarPedidoClick
+    end
   end
   object pcCatalogo: TPageControl
     Left = 0
@@ -155,6 +164,14 @@ object Form1: TForm1
       OnShow = tsPedidoShow
       TabVisible = False
     end
+  end
+  object bAbrirPedido: TButton
+    Left = 304
+    Height = 25
+    Top = 16
+    Width = 75
+    Caption = 'Abrir'
+    TabOrder = 2
   end
   object sdDialog: TSelectDirectoryDialog
     Left = 227
